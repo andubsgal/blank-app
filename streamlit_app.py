@@ -92,6 +92,11 @@ WEATHER={
  "heat":("☀️","Calor","+1 Energy en rutas largas"),
  "dry":("🌤️","Seco","Sin modificador")}
 VICTORY=12
+CONDITION_POOL={
+ "coast":["swell","wind","rain"],"dunes":["wind","heat","dry"],"desert":["heat","wind","dry"],
+ "forest":["rain","dry","wind"],"valley":["wind","rain","dry"],"canyon":["dry","wind","heat"],
+ "mountain":["wind","snow","dry"],"alpine":["snow","wind"],"vertical":["wind","dry","snow"],
+ "island":["swell","wind","rain"]}
 
 st.markdown("""<style>
 .stApp{background:radial-gradient(circle at 45% 0,#18343b 0,#0a1820 48%,#061116 100%);color:#eef8f5}
@@ -115,7 +120,7 @@ def person(name,color,cabin):
 
 def start(names,cabins):
  st.session_state.game={"players":[person(n,COLORS[i],cabins[i]) for i,n in enumerate(names)],
-  "turn":0,"round":1,"guides":{},"roll":None,"log":["Las expediciones salen de sus cabañas."],"winner":None}
+  "turn":0,"round":1,"guides":{},"roll":None,"log":["Las expediciones salen de sus cabañas."],"winner":None,"conditions":{k:random.choice(CONDITION_POOL.get(n[4],["dry"])) for k,n in NODES.items()}}
 
 if "game" not in st.session_state: st.session_state.game=None
 if st.session_state.game is None:
@@ -139,14 +144,14 @@ g=st.session_state.game;p=g["players"][g["turn"]]
 
 def log(s): g["log"].insert(0,s);g["log"]=g["log"][:18]
 def route_cost(e,known=False):
- energy=e[3];gear=e[4];condition=NODES[e[1]][5]
- if NODES[p["loc"]][5]=="wind" or condition=="wind":
+ energy=e[3];gear=e[4];condition=g["conditions"][e[1]]
+ if g["conditions"][p["loc"]]=="wind" or condition=="wind":
   if "flight" in e[2]: energy=max(0,energy-1)
- if NODES[p["loc"]][5]=="swell" or condition=="swell":
+ if g["conditions"][p["loc"]]=="swell" or condition=="swell":
   if "board" in e[2]: energy=max(0,energy-1)
- if NODES[p["loc"]][5]=="rain" or condition=="rain":
+ if g["conditions"][p["loc"]]=="rain" or condition=="rain":
   if "ride" in e[2]: energy+=1
- if (NODES[p["loc"]][5]=="heat" or condition=="heat") and e[8]: energy+=1
+ if (g["conditions"][p["loc"]]=="heat" or condition=="heat") and e[8]: energy+=1
  if known: energy=math.ceil(energy/2);gear=math.floor(gear/2)
  return energy,gear
 def next_turn():
@@ -172,7 +177,7 @@ def map_svg():
   lines.append(f'<circle cx="{mx}" cy="{my}" r="14" fill="#0a1920" stroke="#607d83"/><text x="{mx}" y="{my+5}" text-anchor="middle" fill="white" font-size="12" font-weight="700">{e[5]}</text>')
  icons=[]
  for k,n in NODES.items():
-  ico,name,x,y,cond=n[3],n[0],n[1],n[2],n[5];wicon=WEATHER[cond][0]
+  ico,name,x,y=n[3],n[0],n[1],n[2];cond=g["conditions"][k];wicon=WEATHER[cond][0]
   icons.append(f'<circle cx="{x}" cy="{y}" r="29" fill="#132d35" stroke="#b7d9d4" stroke-width="2"/><text x="{x}" y="{y+7}" text-anchor="middle" font-size="24">{ico}</text><text x="{x}" y="{y+44}" text-anchor="middle" fill="#edf8f5" font-size="12" font-weight="700">{html.escape(name)}</text><text x="{x+25}" y="{y-21}" font-size="15">{wicon}</text>')
  tokens=[];seen={}
  for q in g["players"]:
