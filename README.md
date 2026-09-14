@@ -1,19 +1,36 @@
-# 🎈 Blank app template
+# EXTREME — Expedition Game
 
-A simple Streamlit app template for you to modify!
+Prototipo digital multijugador por turnos de **EXTREME**, un juego de exploración y deportes extremos.
 
-[![Open in Streamlit](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://blank-app-template.streamlit.app/)
+## Qué incluye
 
-### How to run it on your own machine
+- 2–4 exploradores en modo local/hot-seat
+- Mapa topográfico con 10 Spots y 15 travesías
+- Skills permanentes: Flight, Board, Ride, Climb y Jump
+- Energy y Gear como recursos consumibles
+- Rastros y Guides propiedad del primer explorador que descubre cada travesía
+- Pago de Gear para usar Guides de otros jugadores
+- Activities normales y Epic
+- Player XP, Spot XP, clima, ranking y registro de aventura
+- Partida de 10 rondas
 
-1. Install the requirements
+## Jugar
 
-   ```
-   $ pip install -r requirements.txt
-   ```
+La app está preparada para desplegarse gratuitamente en Streamlit Community Cloud.
 
-2. Run the app
+1. Entra a [share.streamlit.io](https://share.streamlit.io/)
+2. Selecciona este repositorio: `andubsgal/blank-app`
+3. Branch: `main`
+4. Main file: `streamlit_app.py`
+5. Pulsa **Deploy**
 
-   ```
-   $ streamlit run streamlit_app.py
-   ```
+## Ejecutar localmente
+
+```bash
+pip install -r requirements.txt
+streamlit run streamlit_app.py
+```
+
+## Estado
+
+Versión 0.1: prototipo funcional para playtesting. El siguiente paso natural es recopilar resultados de partidas y ajustar costes, XP, requisitos y duración.
