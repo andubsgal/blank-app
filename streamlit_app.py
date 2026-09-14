@@ -205,7 +205,7 @@ with side:
  st.subheader(f"{p['name']} · {p['ap']} AP")
  a,b,c,d=st.columns(4);a.metric("Guides",len(p["guides"]));b.metric("XP",p["xp"]);c.metric("Energy",p["energy"]);d.metric("Gear",p["gear"])
  st.markdown(" ".join(f'<span class="chip">{v[1]} {p["skills"][k]}</span>' for k,v in SKILLS.items()),unsafe_allow_html=True)
- st.write(f"📍 **{NODES[p['loc']][0]}** · {WEATHER[NODES[p['loc']][5]][0]} {WEATHER[NODES[p['loc']][5]][1]}")
+ st.write(f"📍 **{NODES[p['loc']][0]}** · {WEATHER[g['conditions'][p['loc']]][0]} {WEATHER[g['conditions'][p['loc']]][1]}")
  if not p["rolled"]:
   if st.button("🎲 Tirar condiciones",use_container_width=True):
    d1=random.randint(1,6);d2=random.randint(1,6);total=d1+d2;g["roll"]=(d1,d2,total);p["rolled"]=True
