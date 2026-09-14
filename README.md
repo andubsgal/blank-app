@@ -1,25 +1,32 @@
-# EXTREME — Expedition Game
+# EXTREME — The Guide Race
 
-Prototipo digital multijugador por turnos de **EXTREME**, un juego de exploración y deportes extremos.
+Prototipo digital multijugador de un juego estratégico de exploración y deportes extremos.
 
-## Qué incluye
+## Objetivo
 
-- 2–4 exploradores en modo local/hot-seat
-- Mapa topográfico con 10 Spots y 15 travesías
+Gana la primera persona que descubra personalmente **12 travesías**. Recorrer una Guide propia nuevamente o pagar por utilizar la Guide de otro atleta permite moverse, pero no entrega una nueva Guide ni XP.
+
+## Versión actual
+
+- 4–6 exploradores en modo local/hot-seat
+- 22 lugares y **46 travesías interconectadas**
+- 6 cabañas iniciales elegibles
+- Costa, arrecife, dunas, bosque, valles, desierto, cañones, montaña, glaciar, volcán e islas
+- Condiciones aleatorias coherentes con cada bioma
 - Skills permanentes: Flight, Board, Ride, Climb y Jump
-- Energy y Gear como recursos consumibles
-- Rastros y Guides propiedad del primer explorador que descubre cada travesía
-- Pago de Gear para usar Guides de otros jugadores
-- Activities normales y Epic
-- Player XP, Spot XP, clima, ranking y registro de aventura
-- Partida de 10 rondas
+- Rutas de uno o varios Skills
+- Rutas normales de 1 XP y travesías largas de 2 XP
+- Energy y Gear como consumibles
+- Guides propiedad de quien descubre cada ruta
+- Tarifas para usar Guides ajenas y pago directo de expediciones
+- Producción mediante 2d6 para todas las Guides
+- Números frecuentes con poca producción y números raros con grandes recompensas
+- Ranking y registro de aventura
 
-## Jugar
+## Publicar en Streamlit
 
-La app está preparada para desplegarse gratuitamente en Streamlit Community Cloud.
-
-1. Entra a [share.streamlit.io](https://share.streamlit.io/)
-2. Selecciona este repositorio: `andubsgal/blank-app`
+1. Abre [share.streamlit.io](https://share.streamlit.io/)
+2. Selecciona `andubsgal/blank-app`
 3. Branch: `main`
 4. Main file: `streamlit_app.py`
 5. Pulsa **Deploy**
@@ -31,6 +38,4 @@ pip install -r requirements.txt
 streamlit run streamlit_app.py
 ```
 
-## Estado
-
-Versión 0.1: prototipo funcional para playtesting. El siguiente paso natural es recopilar resultados de partidas y ajustar costes, XP, requisitos y duración.
+Versión de playtesting: los costes, probabilidades y requisitos están preparados para seguir ajustándose después de las primeras partidas.
